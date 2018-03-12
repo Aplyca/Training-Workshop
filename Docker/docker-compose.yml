@@ -24,11 +24,12 @@ services:
   db:
     container_name: training-db
     image: mariadb
+    hostname: db    
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: example
   adminer:
-    container_name: training-adminer    
+    container_name: training-adminer
     image: adminer
     restart: always
     ports:
