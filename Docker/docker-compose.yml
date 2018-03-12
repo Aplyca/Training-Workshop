@@ -1,0 +1,12 @@
+version: '3.3'
+
+services:
+  web:
+    container_name: training-web
+    image: nginx:alpine
+    hostname: web
+    ports:
+      - "80:80"
+    volumes:
+      - ./:/usr/share/nginx/html:cached
+    working_dir: /usr/share/nginx/html
