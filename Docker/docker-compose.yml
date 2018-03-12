@@ -10,3 +10,26 @@ services:
     volumes:
       - ./:/usr/share/nginx/html:cached
     working_dir: /usr/share/nginx/html
+    links:
+      - app
+  app:
+    container_name: training-app
+    image: php:7.2-fpm-alpine
+    hostname: app
+    volumes:
+      - ./:/app:cached
+    working_dir: /app
+    links:
+      - db
+  db:
+    container_name: training-db
+    image: mariadb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+  adminer:
+    container_name: training-adminer    
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
